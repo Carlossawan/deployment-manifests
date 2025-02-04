@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: dockerhub.idm.net.lb/carlossawan/basic-nginx:28
+        image: dockerhub.idm.net.lb/carlossawan/basic-nginx:1
         ports:
         - containerPort: 80
           name: "nginx-port"
