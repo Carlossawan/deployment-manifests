@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: dockerhub.idm.net.lb:8080/Carlossawan/basic-nginx:IMAGE_TAG_PLACEHOLDER
+        image: dockerhub.idm.net.lb:8080/Carlossawan/basic-nginx:18
         ports:
         - containerPort: 80
           name: "nginx-port"
