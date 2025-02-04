@@ -15,42 +15,12 @@ spec:
       labels:
         app: nginx
     spec:
-      initContainers:
-      - name: git-clone
-        image: alpine/git:latest
-        env:
-        - name: GIT_USER
-          valueFrom:
-            secretKeyRef:
-              name: github-creds
-              key: username
-        - name: GIT_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: github-creds
-              key: token
-        command:
-          - /bin/sh
-          - -c
-          - |
-            # Clone the repository using the credentials stored in GIT_USER and GIT_TOKEN
-            git clone --depth=1 https://${GIT_USER}:${GIT_TOKEN}@github.com/Carlossawan/basic-nginx.git /tmp/repo && \
-            cp -r /tmp/repo/* /usr/share/nginx/html/
-        volumeMounts:
-        - name: static-files
-          mountPath: /usr/share/nginx/html
       containers:
       - name: nginx
-        image: nginx:latest
+        image: dockerhub.idm.net.lb:8080/Carlossawan/basic-nginx:IMAGE_TAG_PLACEHOLDER
         ports:
         - containerPort: 80
           name: "nginx-port"
-        volumeMounts:
-        - name: static-files
-          mountPath: /usr/share/nginx/html
-      volumes:
-      - name: static-files
-        emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
