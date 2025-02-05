@@ -4,14 +4,16 @@ metadata:
   name: user-ingress
   namespace: testcarlos
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    # The rewrite-target captures the part after /user and passes it to the backend
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  - host: "192.168.154.101.nip.io"  # or your chosen DNS name
+    http:
       paths:
-      - path: /user
-        pathType: Prefix
+      - path: /user(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
           service:
             name: nginx-service
