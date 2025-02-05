@@ -10,7 +10,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /user(/|$)(.*)
+      - path: /(connect/token|companies|users)(/|$)(.*)
         pathType: ImplementationSpecific
         backend:
           service:
